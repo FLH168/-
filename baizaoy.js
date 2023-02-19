@@ -8,20 +8,20 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/matrix.fingerplay.cn\/user\/fetchUserInfo.+$ url script-response-body matrix.js
+^http[s]?:\/\/matrix.fingerplay.cn\/user\/fetchUserInfo.+$ url script-response-body fingerplay.js
 [mitm] 
-hostname = *.matrix.*
+hostname = *.fingerplay.*
 *******************************
 Surge
 
 [Script]
-^http[s]?:\/\/matrix.fingerplay.cn\/user\/fetchUserInfo.+$ requires-body=1,max-size=0,script-path=matrix.js
+^http[s]?:\/\/matrix.fingerplay.cn\/user\/fetchUserInfo.+$ requires-body=1,max-size=0,script-path=fingerplay.js
 
 [MITM]
-hostname = *.matrix.*
+hostname = *.fingerplay.*
 
 *******************************/
 var obj = JSON.parse($response.body);
-    obj.vip= 1;
-obj.phone= "傅立恒专用";
+    obj.data.vip= 1;
+obj.data.phone= "傅立恒专用";
     $done({body: JSON.stringify(obj)});
